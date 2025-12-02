@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ lesson.title }}</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f4f7;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        /* HOME BUTTON */
+        .home-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 15px;
+            background: #007bff;
+            color: #fff;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: 0.2s;
+        }
+
+        .home-btn:hover {
+            background: #0056c7;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+
+        h2 {
+            margin-top: 35px;
+            color: #333;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+
+        /* AUDIO STYLE */
+        .audio-card {
+            background: #fafafa;
+            margin-top: 20px;
+            padding: 15px 20px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .audio-card strong {
+            font-size: 16px;
+            color: #444;
+        }
+
+        audio {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        /* FOOTER */
+        .footer {
+            margin-top: 40px;
+            background: #eef3ff;
+            padding: 20px;
+            border-left: 6px solid #0066ff;
+            font-size: 16px;
+            border-radius: 10px;
+        }
+
+        .footer p {
+            margin: 5px 0;
+            font-weight: 600;
+        }
+
+        .image-wrapper {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f3f3f3;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Back to Home -->
+    <a href="/" class="home-btn"> ⬅  Back to Home</a>
+
+    <h1>{{ lesson.title }}</h1>
+
+    <!-- Images -->
+    <h2>Images</h2>
+    {% for file in lesson.files.all %}
+        {% if file.file_type == "image" %}
+            <div class="image-wrapper">
+                <img src="{{ file.file.url }}" alt="Lesson Image">
+            </div>
+        {% endif %}
+    {% endfor %}
+
+    <!-- Audio -->
+    <h2>Audio Files</h2>
+    {% for file in lesson.files.all %}
+        {% if file.file_type == "audio" %}
+            <div class="audio-card">
+                <strong>{{ file.audio_title }}</strong>
+                <audio controls>
+                    <source src="{{ file.file.url }}">
+                </audio>
+            </div>
+        {% endif %}
+    {% endfor %}
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>✔️ Oxunjon Abullayev</p>
+        <p>✔️ @oxunjonabdullayev</p>
+        <p>✔️ {{ lesson.title }} homework</p>
+    </div>
+
+</div>
+
+</body>
+</html>
