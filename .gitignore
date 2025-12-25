@@ -10,8 +10,8 @@ venv/
 env/
 
 # Django
-staticfiles/
-media/
+#staticfiles/
+#media/
 *.log
 
 # VSCode
