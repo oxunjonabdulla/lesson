@@ -21,3 +21,5 @@ class HomeworkFile(models.Model):
 
     def __str__(self):
         return f"{self.lesson.title} - {self.file_type}"
+
+
